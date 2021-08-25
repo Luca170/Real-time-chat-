@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/contacts.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts</title>
+</head>
+<body>
+    <div>
+    <% users.forEach(user => { %>
+        <form action="/chat" method="GET">
+            <%if(user.username != currentUser) {%>
+                <input readonly type="text" value="<%= user.username %>" name="username"><br>
+                <button type="submit">Chat</button>
+           <% } %>
+
+        </form>
+   <% }) %> 
+    </div>
+</body>
+</html>

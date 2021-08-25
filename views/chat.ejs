@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="/chat.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+</head>
+<body>
+    <span class="writing">You are writing with: <%=receiver%></span>
+    <ul id="messages">
+        <% messages.forEach(message => { %>
+           <%if((message.receiver == receiver && message.author == user) || (message.receiver == user && message.author == receiver)) {%>
+            <li class="messages"><strong><%=message.author%>:</strong> <%= message.content %> </li> <br>
+      <%  }}) %> 
+    </ul>
+    <form action="" id="form">
+        <input type="text" autocomplete="off" id="input" name="input"><br>
+        <button>Send</button>
+    </form>
+    <input type="hidden" id= "user" value="<%=user%>" readonly>
+    <input type="hidden" id= "receiver" value="<%=receiver%>" readonly>
+    <script>
+        let socket = io()
+let form = document.getElementById("form")
+let input = document.getElementById("input")
+let ul = document.getElementById("messages")
+let receiver = document.getElementById("receiver")
+let user = document.getElementById("user")
+let div = document.getElementById("div")
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if(input.value) {
+        socket.emit("chat message", input.value,user.value,receiver.value)
+        // socket.emit("author message")
+    }
+    input.value = ""
+})
+socket.on("chat message", (msg,user) => {
+    let li = document.createElement("li")
+    let userz = document.createElement("span")
+    li.textContent = user + ": " + msg
+    li.className = "messages"
+    ul.appendChild(li)
+})
+// socket.on("author message", (author) => {
+//     let span = document.createElement("span")
+//     div.appendChild(span)
+// })
+    </script>
+
+</body>
+</html>

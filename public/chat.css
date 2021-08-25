@@ -1,0 +1,53 @@
+*{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+ul {
+    list-style: none;
+    padding:5px;
+    font-size: 1.7rem;
+}
+div {
+   
+}
+span {
+    font-weight:bold;
+}
+.writing {
+    border:1px solid gray;
+    border-radius: 10px;
+    box-shadow: gray;
+    padding:20px;
+    position: fixed;
+    right:0;
+    top:0;
+}
+form {
+    position: fixed;
+    bottom:0;
+    left:0;
+    right: 0;
+    width:100%;
+    background-color:rgba(128, 128, 128, 0.671);
+    display: flex;
+    padding:10px;
+}
+ #input{
+    width:90%;
+    font-size:2rem;
+    border: 1px solid gray;
+    border-radius: 25px;
+    outline:none;
+    padding-left:5px;
+}
+button {
+    width:10%;
+    color:white;
+    background-color:rgba(41, 40, 40, 0.719);
+    border:none;
+    border-radius: 20px;
+    margin:2px;
+    cursor: pointer;
+}
+button:hover {
+    background-color:rgba(41, 40, 40)
+}
